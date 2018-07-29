@@ -12,13 +12,14 @@
     "react-select": "^2.0.0",
     "react-test-renderer": "^16.4.1",
     "redux": "^4.0.0",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "short-id": "0.1.0-1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/registerServiceWorker.js",
+    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/registerServiceWorker.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/store/configureStore.js",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

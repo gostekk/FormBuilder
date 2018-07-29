@@ -9,7 +9,7 @@ export class BuilderForm extends Component {
     super(props);
 
     this.state = {
-      question: props.question ? props.question : "",
+      question: props.question,
     };
 
     this.conditionOptions = {
@@ -69,7 +69,7 @@ export class BuilderForm extends Component {
           <div className="form-group row">
             <label htmlFor="question" className="col-sm-2 col-form-label">Question</label>
             <div className="col-sm-10">
-              <input type="text" className="form-control" id="question" onChange={this.onQuestionChange.bind(this)} value={this.props.question ? this.props.question : ""} />
+              <input type="text" className="form-control" id="question" onChange={this.onQuestionChange.bind(this)} value={this.props.question} />
             </div>
           </div>
           <div className="form-group row">
@@ -84,15 +84,13 @@ export class BuilderForm extends Component {
           </div>
         </div>
       </form>
-      { this.props.forms
-        ? this.props.forms.map((form, index) =>  
+      { this.props.forms.map((form, index) =>  
           form.parentId === this.props._id 
           ? (<div className="card-body" key={form._id}>
               <BuilderFormContainer {...form} parentType={this.props.type} />
             </div>)
           : undefined
         )
-        : undefined   
       }
       </div>
     );

@@ -17,4 +17,5 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(BuilderForm);
+const BuilderFormContainer = connect(mapStateToProps,mapDispatchToProps)(BuilderForm);
+export default BuilderFormContainer;

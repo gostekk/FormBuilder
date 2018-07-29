@@ -14,4 +14,5 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Builder);
+const BuilderContainer = connect(mapStateToProps,mapDispatchToProps)(Builder);
+export default BuilderContainer;
