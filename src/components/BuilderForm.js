@@ -8,31 +8,36 @@ export class BuilderForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      question: props.question,
-    };
-
-    this.conditionOptions = {
-      text: [
-        { value: 'eq', label: 'Equals' }
-      ],
-      number: [
-      { value: 'eq', label: 'Equals' },
-      { value: 'gt', label: 'Greater than' },
-      { value: 'lt', label: 'Less than' }
-      ],
-      radio: [
-        { value: 'eq', label: 'Equals' },
-      ],
-    };
-
-    this.typeOptions = [
-      { value: 'text', label: 'Text' },
-      { value: 'number', label: 'Number' },
-      { value: 'radio', label: 'Radio' }
-    ];
+    this.onConditionTypeChange = this.onConditionTypeChange.bind(this);
+    this.onConditionValueChange = this.onConditionValueChange.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
+    this.onQuestionChange = this.onQuestionChange.bind(this);
   }
 
+  state = {
+    question: this.props.question,
+  };
+
+  conditionOptions = {
+    text: [
+      { value: 'eq', label: 'Equals' }
+    ],
+    number: [
+    { value: 'eq', label: 'Equals' },
+    { value: 'gt', label: 'Greater than' },
+    { value: 'lt', label: 'Less than' }
+    ],
+    radio: [
+      { value: 'eq', label: 'Equals' },
+    ],
+  };
+
+  typeOptions = [
+    { value: 'text', label: 'Text' },
+    { value: 'number', label: 'Number' },
+    { value: 'radio', label: 'Radio' }
+  ];
+  
   onConditionTypeChange = (e) => {
     this.props.editForm(this.props._id, { conditionType: e.value });
   }
@@ -58,10 +63,10 @@ export class BuilderForm extends Component {
             ? (<div className="form-group row">
               <label htmlFor="condition" className="col-sm-2 col-form-label">Condition</label>
               <div className="col-sm-5">
-                <Select placeholder={this.props.conditionType} value={this.props.conditionType} onChange={this.onConditionTypeChange.bind(this)} options={this.conditionOptions[this.props.parentType]}/>
+                <Select placeholder={this.props.conditionType} value={this.props.conditionType} onChange={this.onConditionTypeChange} options={this.conditionOptions[this.props.parentType]}/>
               </div>
               <div className="col-sm-5">
-                <input type="text" className="form-control" id="conditionValue" onChange={this.onConditionValueChange.bind(this)} value={this.props.conditionValue ? this.props.conditionValue : ""} />
+                <input type="text" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : ""} />
               </div>
             </div>)
           : undefined
@@ -69,13 +74,13 @@ export class BuilderForm extends Component {
           <div className="form-group row">
             <label htmlFor="question" className="col-sm-2 col-form-label">Question</label>
             <div className="col-sm-10">
-              <input type="text" className="form-control" id="question" onChange={this.onQuestionChange.bind(this)} value={this.props.question} />
+              <input type="text" className="form-control" id="question" onChange={this.onQuestionChange} value={this.props.question} />
             </div>
           </div>
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">Type</label>
             <div className="col-sm-10">
-              <Select placeholder={this.props.type} value={this.props.type} onChange={this.onTypeChange.bind(this)} options={this.typeOptions}/>
+              <Select placeholder={this.props.type} value={this.props.type} onChange={this.onTypeChange} options={this.typeOptions}/>
             </div>
           </div>
           <div className="float-sm-right mb-2">
