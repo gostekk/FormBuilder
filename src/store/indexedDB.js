@@ -24,5 +24,12 @@ export const myDB = {
       tx.objectStore('forms').add({...form});
       return tx.complete;
     });
-  }
+  },
+  delete(key) {
+    return dbPromise.then(db => {
+      const tx = db.transaction('forms', 'readwrite');
+      tx.objectStore('forms').delete(key);
+      return tx.complete;
+    });
+  },
 }

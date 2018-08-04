@@ -1,5 +1,6 @@
 import { ofType } from "redux-observable";
 import { map } from 'rxjs/operators';
+import { myDB } from '../store/indexedDB';
 
 // EDIT_FORM_REQUEST
 export const editFormEpic = (action$, state$) => action$.pipe(
@@ -43,8 +44,9 @@ export const removeFormEpic = (action$, state$) => action$.pipe(
   map(action => {
     let newState = state$.value.forms.forms;
     newState.filter(({ id }) => id !== action.id);
-
+    myDB.delete(action.id);
     const filterElement = (elementId) => {
+      myDB.delete(elementId);
       newState = newState.filter(({ id }) => id !== elementId)
     }
 
