@@ -1,9 +1,13 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import BuilderForm from "../containers/BuilderForm";
 
-export class Builder extends React.Component {
+export class Builder extends PureComponent {
+  componentWillMount() {
+    this.props.fetchForms();
+  }
+  
   render() {
     return (
     <div className="container">
@@ -25,7 +29,7 @@ export class Builder extends React.Component {
             { this.props.forms.length
               ? this.props.forms.map((form) => 
                 form.parentId === undefined 
-                ? <BuilderForm key={form._id} {...form} />
+                ? <BuilderForm key={form.id} {...form} />
                 : undefined
               )
               : <div>No inputs added yet!</div>
@@ -40,7 +44,8 @@ export class Builder extends React.Component {
 
 Builder.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object),
-  addNewForm: PropTypes.func
+  addNewForm: PropTypes.func,
+  fetchForms: PropTypes.func
 }
 
 export default Builder;

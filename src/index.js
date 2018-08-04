@@ -5,11 +5,8 @@ import configureStore from "./store/configureStore";
 import registerServiceWorker from "./registerServiceWorker";
 
 import App from "./routes/App";
-import { fetchForms } from "./actions/forms";
 
 const store = configureStore();
-
-store.subscribe(() => fetchForms());
 
 ReactDOM.render(
   <Provider store={store}>

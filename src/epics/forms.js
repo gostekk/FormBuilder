@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 export const editFormEpic = (action$, state$) => action$.pipe(
   ofType("EDIT_FORM_REQUEST"),
   map(action => {
-    let newState = state$.value.forms.forms.map(form => form._id === action.formId
+    let newState = state$.value.forms.forms.map(form => form.id === action.formId
       ? { ...form, ...action.updates }
       : form );
 
@@ -18,7 +18,7 @@ export const editTypeEpic = (action$, state$) => action$.pipe(
   ofType("EDIT_TYPE_REQUEST"),
   map(action => {
     let newState = state$.value.forms.forms.map(form => {
-      if (form._id === action.formId) {
+      if (form.id === action.formId) {
         return { ...form, type: action.formType };
       } else if (form.parentId === action.formId) {
         if (action.formType === 'text') {
@@ -42,21 +42,21 @@ export const removeFormEpic = (action$, state$) => action$.pipe(
   ofType("REMOVE_FORM_REQUEST"),
   map(action => {
     let newState = state$.value.forms.forms;
-    newState.filter(({ _id }) => _id !== action._id);
+    newState.filter(({ id }) => id !== action.id);
 
-    const filterElement = (id) => {
-      newState = newState.filter(({ _id }) => _id !== id)
+    const filterElement = (elementId) => {
+      newState = newState.filter(({ id }) => id !== elementId)
     }
 
-    const childFind = (id) => {
-      filterElement(id);
-      newState.find(({ _id, parentId}) => id === parentId
-      ? childFind(_id)
+    const childFind = (childId) => {
+      filterElement(childId);
+      newState.find(({ id, parentId}) => childId === parentId
+      ? childFind(id)
       : undefined
       )
     }
     
-    childFind(action._id);
+    childFind(action.id);
     return ({type: "REMOVE_FORM_SUCCESS", newState});
   })
 );

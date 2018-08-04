@@ -44,25 +44,25 @@ export class BuilderForm extends Component {
   ];
   
   onConditionTypeChange = (e) => {
-    this.props.editForm(this.props._id, { conditionType: e.value });
+    this.props.editForm(this.props.id, { conditionType: e.value });
   }
 
   onConditionValueChange = (e) => {
     if (e.target) {
-      this.props.editForm(this.props._id, { conditionValue: e.target.value });
+      this.props.editForm(this.props.id, { conditionValue: e.target.value });
     } else {
-      this.props.editForm(this.props._id, { conditionValue: e.value });
+      this.props.editForm(this.props.id, { conditionValue: e.value });
     }
   }
 
   onTypeChange = (e) => {
     if (e.value !== this.props.type) {
-      this.props.editType(this.props._id, e.value);
+      this.props.editType(this.props.id, e.value);
     }
   }
 
   onQuestionChange = (e) => {
-    this.props.editForm(this.props._id, { question: e.target.value });
+    this.props.editForm(this.props.id, { question: e.target.value });
   }
 
   render() {
@@ -103,14 +103,14 @@ export class BuilderForm extends Component {
             </div>
           </div>
           <div className="float-sm-right mb-2">
-            <button type="button" className="btn btn-primary" onClick={() => this.props.addSubInput(this.props._id)}>Add Sub-Input</button>
-            <button type="button" className="btn btn-danger" onClick={() => this.props.removeForm(this.props._id)}>Delete</button>
+            <button type="button" className="btn btn-primary" onClick={() => this.props.addSubInput(this.props.id)}>Add Sub-Input</button>
+            <button type="button" className="btn btn-danger" onClick={() => this.props.removeForm(this.props.id)}>Delete</button>
           </div>
         </div>
       </form>
       { this.props.forms.map((form, index) =>  
-          form.parentId === this.props._id 
-          ? (<div className="card-body" key={form._id}>
+          form.parentId === this.props.id 
+          ? (<div className="card-body" key={form.id}>
               <BuilderFormContainer {...form} parentType={this.props.type} />
             </div>)
           : undefined
@@ -123,7 +123,7 @@ export class BuilderForm extends Component {
 
 BuilderForm.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  _id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
   question: PropTypes.string.isRequired,
   conditionType: PropTypes.string,
