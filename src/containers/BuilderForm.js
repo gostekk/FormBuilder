@@ -13,6 +13,7 @@ export const mapDispatchToProps = (dispatch) => {
   return {
     addSubInput: (formId) => dispatch(formsActions.addSubInput(formId)),
     editForm: (id, updates) => dispatch(formsActions.editForm(id, updates)),
+    editType: (id, type) => dispatch(formsActions.editType(id, type)),
     removeForm: (id) => dispatch(formsActions.removeForm(id)),
   }
 }

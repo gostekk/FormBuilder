@@ -32,6 +32,11 @@ export class BuilderForm extends Component {
     ],
   };
 
+  conditionValue = [
+    { value: 'yes', label: 'Yes' },
+    { value: 'no', label: 'No' }
+  ];
+
   typeOptions = [
     { value: 'text', label: 'Text' },
     { value: 'number', label: 'Number' },
@@ -43,11 +48,17 @@ export class BuilderForm extends Component {
   }
 
   onConditionValueChange = (e) => {
-    this.props.editForm(this.props._id, { conditionValue: e.target.value });
+    if (e.target) {
+      this.props.editForm(this.props._id, { conditionValue: e.target.value });
+    } else {
+      this.props.editForm(this.props._id, { conditionValue: e.value });
+    }
   }
 
   onTypeChange = (e) => {
-    this.props.editForm(this.props._id, { type: e.value });
+    if (e.value !== this.props.type) {
+      this.props.editType(this.props._id, e.value);
+    }
   }
 
   onQuestionChange = (e) => {
@@ -66,7 +77,15 @@ export class BuilderForm extends Component {
                 <Select placeholder={this.props.conditionType} value={this.props.conditionType} onChange={this.onConditionTypeChange} options={this.conditionOptions[this.props.parentType]}/>
               </div>
               <div className="col-sm-5">
-                <input type="text" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : ""} />
+                { this.props.parentType === "text"
+                ? <input type="text" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : ""} />
+                : undefined }
+                { this.props.parentType === "number"
+                ? <input type="number" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : 0} />
+                : undefined }
+                { this.props.parentType === "radio"
+                ? <Select placeholder={this.props.conditionValue} value={this.props.conditionValue} onChange={this.onConditionValueChange} options={this.conditionValue} />
+                : undefined }
               </div>
             </div>)
           : undefined
@@ -108,7 +127,10 @@ BuilderForm.propTypes = {
   type: PropTypes.string,
   question: PropTypes.string.isRequired,
   conditionType: PropTypes.string,
-  conditionValue: PropTypes.string,
+  conditionValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   addSubInput: PropTypes.func.isRequired,
   editForm: PropTypes.func.isRequired,
   removeForm: PropTypes.func.isRequired

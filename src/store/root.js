@@ -3,5 +3,6 @@ import * as epicForms from '../epics/forms';
 
 export const rootEpic = combineEpics(
   epicForms.editFormEpic,
+  epicForms.editTypeEpic,
   epicForms.removeFormEpic
 );

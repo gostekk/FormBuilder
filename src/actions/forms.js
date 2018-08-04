@@ -37,7 +37,7 @@ export const addSubInputRequest = (formId, subFormId) => ({
 
 // EDIT_FORM
 export const editForm = (formId, updates) => {
-  return dispatch => dispatch(editFormRequest(formId, updates))
+  return dispatch => dispatch(editFormRequest(formId, updates));
 };
 
 // EDIT_FORM_REQUEST
@@ -45,6 +45,18 @@ export const editFormRequest = (formId, updates) => ({
   type: "EDIT_FORM_REQUEST",
   formId,
   updates
+});
+
+// EDIT_TYPE
+export const editType = (formId, formType) => {
+  return dispatch => dispatch(editTypeRequest(formId, formType));
+};
+
+// EDIT_TYPE_REQUEST
+export const editTypeRequest = (formId, formType) => ({
+  type: "EDIT_TYPE_REQUEST",
+  formId,
+  formType
 });
 
 // REMOVE_FORM

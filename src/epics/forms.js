@@ -13,6 +13,30 @@ export const editFormEpic = (action$, state$) => action$.pipe(
   })
 );
 
+// EDIT_TYPE_REQUEST
+export const editTypeEpic = (action$, state$) => action$.pipe(
+  ofType("EDIT_TYPE_REQUEST"),
+  map(action => {
+    let newState = state$.value.forms.forms.map(form => {
+      if (form._id === action.formId) {
+        return { ...form, type: action.formType };
+      } else if (form.parentId === action.formId) {
+        if (action.formType === 'text') {
+          return { ...form, conditionType: 'eq', conditionValue: "" };
+        } else if (action.formType === 'number') {
+          return { ...form, conditionType: 'eq', conditionValue: 0 };
+        } else {
+          return { ...form, conditionType: 'eq', conditionValue: 'yes' };
+        }
+      } else {
+        return form;
+      }
+    });
+
+    return ({type: "EDIT_TYPE_SUCCESS", newState});
+  })
+);
+
 // REMOVE_FORM_REQUEST
 export const removeFormEpic = (action$, state$) => action$.pipe(
   ofType("REMOVE_FORM_REQUEST"),

@@ -35,6 +35,16 @@ const formsReducer = (state = formsDefaultState, action) => {
         forms: action.newState,
         error: null
       };
+    case "EDIT_TYPE_REQUEST":
+      return {
+        ...state,
+      };
+    case "EDIT_TYPE_SUCCESS":
+      return {
+        ...state,
+        forms: action.newState,
+        error: null
+      };
     case "REMOVE_FORM_REQUEST":
       return {
         ...state,
