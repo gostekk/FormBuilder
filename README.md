@@ -7,7 +7,7 @@ yarn install
 yarn start
 ```
 
-##TESTs
+## TESTs
 
 ```
 yarn test
