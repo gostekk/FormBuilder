@@ -20,7 +20,7 @@ export class Builder extends PureComponent {
           { this.props.forms.length
             ? this.props.forms.map((form) => 
               form.parentId === undefined 
-              ? <BuilderForm key={form._id} {...form} />
+              ? <BuilderForm key={form.id} {...form} />
               : undefined
             )
             : <div>No inputs added yet!</div>

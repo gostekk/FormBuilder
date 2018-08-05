@@ -56,8 +56,8 @@ export class PreviewChild extends PureComponent {
         </div>
       </form>
       { this.props.forms.map(form =>  
-          form.parentId === this.props._id 
-          ? (<div className="card-body" key={form._id}>
+          form.parentId === this.props.id 
+          ? (<div className="card-body" key={form.id}>
               <PreviewChildContainer {...form} parentType={this.props.type} parentValue={this.state.answer} />
             </div>)
           : undefined
@@ -70,7 +70,7 @@ export class PreviewChild extends PureComponent {
 
 PreviewChild.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  _id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
   question: PropTypes.string.isRequired,
   conditionType: PropTypes.string,

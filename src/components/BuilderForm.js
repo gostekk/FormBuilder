@@ -103,8 +103,8 @@ export class BuilderForm extends PureComponent {
             </div>
           </div>
           <div className="float-sm-right mb-2">
-            <button type="button" className="btn btn-primary" onClick={() => this.props.addSubInput(this.props._id, this.props.type)}>Add Sub-Input</button>
-            <button type="button" className="btn btn-danger" onClick={() => this.props.removeForm(this.props._id)}>Delete</button>
+            <button type="button" className="btn btn-primary" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>Add Sub-Input</button>
+            <button type="button" className="btn btn-danger" onClick={() => this.props.removeForm(this.props.id)}>Delete</button>
           </div>
         </div>
       </form>
