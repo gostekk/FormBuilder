@@ -6,6 +6,7 @@ import { myDB } from '../store/indexedDB';
 export const editFormEpic = (action$, state$) => action$.pipe(
   ofType("EDIT_FORM_REQUEST"),
   map(action => {
+    myDB.update(action.formId, action.updates);
     let newState = state$.value.forms.forms.map(form => form.id === action.formId
       ? { ...form, ...action.updates }
       : form );
@@ -20,13 +21,17 @@ export const editTypeEpic = (action$, state$) => action$.pipe(
   map(action => {
     let newState = state$.value.forms.forms.map(form => {
       if (form.id === action.formId) {
+        myDB.update(action.formId, {type: action.formType});
         return { ...form, type: action.formType };
       } else if (form.parentId === action.formId) {
         if (action.formType === 'text') {
+          myDB.update(form.id, { conditionType: 'eq', conditionValue: "" });
           return { ...form, conditionType: 'eq', conditionValue: "" };
         } else if (action.formType === 'number') {
+          myDB.update(form.id, { conditionType: 'eq', conditionValue: 0 });
           return { ...form, conditionType: 'eq', conditionValue: 0 };
         } else {
+          myDB.update(form.id, { conditionType: 'eq', conditionValue: 'yes' });
           return { ...form, conditionType: 'eq', conditionValue: 'yes' };
         }
       } else {

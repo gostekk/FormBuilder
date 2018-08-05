@@ -25,6 +25,21 @@ export const myDB = {
       return tx.complete;
     });
   },
+  update(key, updates) {
+    return dbPromise.then(db => {
+      const tx = db.transaction('forms', 'readwrite');
+      tx.objectStore('forms').iterateCursor(cursor => {
+        if (!cursor) return;
+        if (cursor.key === key) {
+          const updatedValue = {...cursor.value, ...updates};
+          cursor.update(updatedValue);
+        }
+        cursor.continue();
+      });
+ 
+      return tx.complete;
+    });
+  },
   delete(key) {
     return dbPromise.then(db => {
       const tx = db.transaction('forms', 'readwrite');
