@@ -11,6 +11,7 @@ export const mapStateToProps = (state,ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     addNewForm: () => dispatch(formsActions.addNewForm()),
+    fetchForms: () => dispatch(formsActions.fetchForms()),
   }
 }
 

@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import BuilderForm from "../containers/BuilderForm";
 
 export class Builder extends PureComponent {
+  componentWillMount() {
+    this.props.fetchForms();
+  }
+  
   render() {
     return (
       <div className="card-body">
@@ -29,7 +33,8 @@ export class Builder extends PureComponent {
 
 Builder.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object),
-  addNewForm: PropTypes.func
+  addNewForm: PropTypes.func,
+  fetchForms: PropTypes.func
 }
 
 export default Builder;
