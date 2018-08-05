@@ -11,7 +11,7 @@ export const mapStateToProps = (state,ownProps) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    addSubInput: (formId) => dispatch(formsActions.addSubInput(formId)),
+    addSubInput: (formId, formType) => dispatch(formsActions.addSubInput(formId, formType)),
     editForm: (id, updates) => dispatch(formsActions.editForm(id, updates)),
     editType: (id, type) => dispatch(formsActions.editType(id, type)),
     removeForm: (id) => dispatch(formsActions.removeForm(id)),

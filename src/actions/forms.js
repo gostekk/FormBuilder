@@ -23,16 +23,18 @@ export const addNewFormRequest = (id) => ({
 });
 
 // ADD_SUB_INPUT
-export const addSubInput = (formId) => {
+export const addSubInput = (formId, formType) => {
   const subFormId = shortid.generate();
-  return dispatch => dispatch(addSubInputRequest(formId, subFormId));
+  const conditionValue = formType === 'radio' ? 'yes' : formType === 'number' ? 0 : "";
+  return dispatch => dispatch(addSubInputRequest(formId, subFormId, conditionValue));
 };
 
 // ADD_SUB_INPUT_REQUEST
-export const addSubInputRequest = (formId, subFormId) => ({
+export const addSubInputRequest = (formId, subFormId, conditionValue) => ({
   type: "ADD_SUB_INPUT_REQUEST",
   formId,
-  subFormId
+  subFormId,
+  conditionValue
 });
 
 // EDIT_FORM

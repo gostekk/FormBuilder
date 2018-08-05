@@ -22,7 +22,7 @@ const formsReducer = (state = formsDefaultState, action) => {
     case "ADD_SUB_INPUT_REQUEST":
       return {
         ...state,
-        forms: [...state.forms, { _id: action.subFormId, parentId: action.formId, question: "", type: "text", conditionType: 'eq', conditionValue: undefined }],
+        forms: [...state.forms, { _id: action.subFormId, parentId: action.formId, question: "", type: "text", conditionType: 'eq', conditionValue: action.conditionValue }],
         error: null
       };
     case "EDIT_FORM_REQUEST":
