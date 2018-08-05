@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 import BuilderFormContainer from '../containers/BuilderForm';
 
-export class BuilderForm extends Component {
+export class BuilderForm extends PureComponent {
   constructor(props) {
     super(props);
 

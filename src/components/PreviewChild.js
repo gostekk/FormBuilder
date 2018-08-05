@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 import PreviewChildContainer from '../containers/PreviewChild';
 
-export class PreviewChild extends Component {
+export class PreviewChild extends PureComponent {
   constructor(props) {
     super(props);
 

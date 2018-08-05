@@ -3,6 +3,7 @@ import Preview from '../components/Preview';
 
 export const mapStateToProps = (state,ownProps) => {
   return {
+    ...ownProps,
     forms: state.forms.forms
   }
 }

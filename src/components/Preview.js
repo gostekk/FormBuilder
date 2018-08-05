@@ -1,9 +1,9 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import PreviewChild from "../containers/PreviewChild";
 
-export class Preview extends React.Component {
+export class Preview extends PureComponent {
   render() {
     return (
       <div className="card-body">

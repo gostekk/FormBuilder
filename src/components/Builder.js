@@ -1,9 +1,9 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import BuilderForm from "../containers/BuilderForm";
 
-export class Builder extends React.Component {
+export class Builder extends PureComponent {
   render() {
     return (
       <div className="card-body">

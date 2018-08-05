@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export class Export extends Component {
+export class Export extends PureComponent {
   state = {
     export: this.props.forms
   };
