@@ -29,7 +29,11 @@ export class PreviewChild extends Component {
   }
 
   render() {
-    return ( this.props.parentValue === this.props.conditionValue ?
+    return ( (this.props.parentValue === this.props.conditionValue && this.props.parentType !== 'number')
+      || (this.props.parentType === 'number' && this.props.conditionType === 'eq' && Number(this.props.conditionValue) === Number(this.props.parentValue)) 
+      || (this.props.parentType === 'number' && this.props.conditionType === 'gt' && Number(this.props.conditionValue) < Number(this.props.parentValue)) 
+      || (this.props.parentType === 'number' && this.props.conditionType === 'lt' && Number(this.props.conditionValue) > Number(this.props.parentValue))
+      ?
       <div className="card mb-2">
       <form>
         <div className="card-body">
