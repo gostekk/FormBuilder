@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 
 export class Export extends PureComponent {
+  componentWillMount() {
+    this.props.fetchForms();
+  }
+  
   state = {
     export: this.props.forms
   };

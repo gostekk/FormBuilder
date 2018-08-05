@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import PreviewChild from "../containers/PreviewChild";
 
 export class Preview extends PureComponent {
+  componentWillMount() {
+    this.props.fetchForms();
+  }
+  
   render() {
     return (
       <div className="card-body">

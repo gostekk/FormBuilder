@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as formsActions from '../actions/forms';
 import Export from '../components/Export';
 
 export const mapStateToProps = (state,ownProps) => {
@@ -7,5 +8,11 @@ export const mapStateToProps = (state,ownProps) => {
   }
 }
 
-const ExportContainer = connect(mapStateToProps)(Export);
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchForms: () => dispatch(formsActions.fetchForms()),
+  }
+}
+
+const ExportContainer = connect(mapStateToProps, mapDispatchToProps)(Export);
 export default ExportContainer;

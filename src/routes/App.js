@@ -6,8 +6,8 @@ import Preview from "../containers/Preview";
 import Export from "../containers/Export";
 import Header from "../components/Header";
 
-const App = (props) => (
-  <Router>
+const App = () => (
+  <Router forceRefresh>
     <div className="container-fluid">
       <Header>
         <Switch>
