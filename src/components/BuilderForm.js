@@ -67,21 +67,21 @@ export class BuilderForm extends PureComponent {
 
   render() {
     return (
-      <div className="card mb-2">
+      <div>
       <form>
-        <div className="card-body">
+        <div>
           { this.props.parentId
-            ? (<div className="form-group row">
-              <label htmlFor="condition" className="col-sm-2 col-form-label">Condition</label>
-              <div className="col-sm-5">
+            ? (<div>
+              <label htmlFor="condition">Condition</label>
+              <div>
                 <Select placeholder={this.props.conditionType} value={this.props.conditionType} onChange={this.onConditionTypeChange} options={this.conditionOptions[this.props.parentType]}/>
               </div>
-              <div className="col-sm-5">
+              <div>
                 { this.props.parentType === "text"
-                ? <input type="text" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : ""} />
+                ? <input type="text" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : ""} />
                 : undefined }
                 { this.props.parentType === "number"
-                ? <input type="number" className="form-control" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : 0} />
+                ? <input type="number" id="conditionValue" onChange={this.onConditionValueChange} value={this.props.conditionValue ? this.props.conditionValue : 0} />
                 : undefined }
                 { this.props.parentType === "radio"
                 ? <Select placeholder={this.props.conditionValue} value={this.props.conditionValue} onChange={this.onConditionValueChange} options={this.conditionValue} />
@@ -90,27 +90,27 @@ export class BuilderForm extends PureComponent {
             </div>)
           : undefined
           }
-          <div className="form-group row">
-            <label htmlFor="question" className="col-sm-2 col-form-label">Question</label>
-            <div className="col-sm-10">
-              <input type="text" className="form-control" id="question" onChange={this.onQuestionChange} value={this.props.question} />
+          <div>
+            <label htmlFor="question">Question</label>
+            <div>
+              <input type="text" id="question" onChange={this.onQuestionChange} value={this.props.question} />
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">Type</label>
-            <div className="col-sm-10">
+          <div>
+            <label>Type</label>
+            <div>
               <Select placeholder={this.props.type} value={this.props.type} onChange={this.onTypeChange} options={this.typeOptions}/>
             </div>
           </div>
-          <div className="float-sm-right mb-2">
-            <button type="button" className="btn btn-primary" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>Add Sub-Input</button>
-            <button type="button" className="btn btn-danger" onClick={() => this.props.removeForm(this.props.id)}>Delete</button>
+          <div>
+            <button type="button" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>Add Sub-Input</button>
+            <button type="button" onClick={() => this.props.removeForm(this.props.id)}>Delete</button>
           </div>
         </div>
       </form>
       { this.props.forms.map((form, index) =>  
           form.parentId === this.props.id 
-          ? (<div className="card-body" key={form.id}>
+          ? (<div key={form.id}>
               <BuilderFormContainer {...form} parentType={this.props.type} />
             </div>)
           : undefined

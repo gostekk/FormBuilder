@@ -7,9 +7,9 @@ export class Export extends PureComponent {
 
   render() {
     return (
-      <div className="card-body">
-        <div className="form-group">
-          <textarea className="form-control" rows="5" readOnly value={JSON.stringify(this.state.export)}>
+      <div>
+        <div>
+          <textarea rows="5" readOnly value={JSON.stringify(this.state.export)}>
           </textarea>
         </div> 
       </div>

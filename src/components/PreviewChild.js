@@ -34,19 +34,19 @@ export class PreviewChild extends PureComponent {
       || (this.props.parentType === 'number' && this.props.conditionType === 'gt' && Number(this.props.conditionValue) < Number(this.props.parentValue)) 
       || (this.props.parentType === 'number' && this.props.conditionType === 'lt' && Number(this.props.conditionValue) > Number(this.props.parentValue))
       ?
-      <div className="card mb-2">
+      <div>
       <form>
-        <div className="card-body">
-          <div className="form-group row">
-            <div className="col-sm-6">
-              <label htmlFor="question" className="col-sm-12 col-form-label">{this.props.question}</label>
+        <div>
+          <div>
+            <div>
+              <label htmlFor="question">{this.props.question}</label>
             </div>
-            <div className="col-sm-6">
+            <div>
               { this.props.type === "text"
-              ? <input type="text" className="form-control" id="answerValue" onChange={this.onAnswerChange} value={this.state.answer} />
+              ? <input type="text" id="answerValue" onChange={this.onAnswerChange} value={this.state.answer} />
               : undefined }
               { this.props.type === "number"
-              ? <input type="number" className="form-control" id="answerValue" onChange={this.onAnswerChange} value={this.state.answer} />
+              ? <input type="number" id="answerValue" onChange={this.onAnswerChange} value={this.state.answer} />
               : undefined }
               { this.props.type === "radio"
               ? <Select placeholder={this.state.answer} value={this.state.answer} onChange={this.onAnswerChange} options={this.radioOptions} />
@@ -57,7 +57,7 @@ export class PreviewChild extends PureComponent {
       </form>
       { this.props.forms.map(form =>  
           form.parentId === this.props.id 
-          ? (<div className="card-body" key={form.id}>
+          ? (<div key={form.id}>
               <PreviewChildContainer {...form} parentType={this.props.type} parentValue={this.state.answer} />
             </div>)
           : undefined

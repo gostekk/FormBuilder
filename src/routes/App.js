@@ -8,7 +8,7 @@ import Header from "../components/Header";
 
 const App = (props) => (
   <Router>
-    <div className="container-fluid">
+    <div>
       <Header>
         <Switch>
           <Route path="/" exact component={Builder}/>

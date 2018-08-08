@@ -6,8 +6,8 @@ import PreviewChild from "../containers/PreviewChild";
 export class Preview extends PureComponent {
   render() {
     return (
-      <div className="card-body">
-        <div className="col-md-12">
+      <div>
+        <div>
           { this.props.forms.length
             ? this.props.forms.map((form) => 
               form.parentId === undefined 

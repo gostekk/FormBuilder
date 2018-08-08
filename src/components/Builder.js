@@ -10,13 +10,13 @@ export class Builder extends PureComponent {
   
   render() {
     return (
-      <div className="card-body">
-        <div className="col-md-12">
-          <button onClick={() => this.props.addNewForm()} className="btn btn-success btn-sm btn-block">
+      <div>
+        <div>
+          <button onClick={() => this.props.addNewForm()}>
             Add input
           </button>
         </div>
-        <div className="col-md-12">
+        <div>
           { this.props.forms.length
             ? this.props.forms.map((form) => 
               form.parentId === undefined 
