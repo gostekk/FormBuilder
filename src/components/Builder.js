@@ -1,7 +1,22 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 import BuilderForm from "../containers/BuilderForm";
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+    float: 'right',
+    background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
+    boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .30)',
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+});
 
 export class Builder extends PureComponent {
   componentWillMount() {
@@ -9,12 +24,13 @@ export class Builder extends PureComponent {
   }
   
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <div>
-          <button onClick={() => this.props.addNewForm()}>
-            Add input
-          </button>
+          <Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={() => this.props.addNewForm()}>
+            <AddIcon />
+          </Button>
         </div>
         <div>
           { this.props.forms.length
@@ -34,7 +50,8 @@ export class Builder extends PureComponent {
 Builder.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object),
   addNewForm: PropTypes.func,
-  fetchForms: PropTypes.func
+  fetchForms: PropTypes.func,
+  classes: PropTypes.object.isRequired
 }
 
-export default Builder;
+export default withStyles(styles)(Builder);

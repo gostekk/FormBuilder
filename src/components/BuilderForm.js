@@ -68,7 +68,6 @@ export class BuilderForm extends PureComponent {
   render() {
     return (
       <div>
-      <form>
         <div>
           { this.props.parentId
             ? (<div>
@@ -107,7 +106,6 @@ export class BuilderForm extends PureComponent {
             <button type="button" onClick={() => this.props.removeForm(this.props.id)}>Delete</button>
           </div>
         </div>
-      </form>
       { this.props.forms.map((form, index) =>  
           form.parentId === this.props.id 
           ? (<div key={form.id}>

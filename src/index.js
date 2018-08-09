@@ -6,6 +6,8 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import App from "./routes/App";
 
+import 'typeface-roboto';
+
 const store = configureStore();
 
 ReactDOM.render(
