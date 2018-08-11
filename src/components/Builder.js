@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
 import BuilderForm from "../containers/BuilderForm";
@@ -28,9 +29,11 @@ export class Builder extends PureComponent {
     return (
       <div>
         <div>
-          <Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={() => this.props.addNewForm()}>
-            <AddIcon />
-          </Button>
+          <Tooltip title="Add Input">
+            <Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={() => this.props.addNewForm()}>
+              <AddIcon />
+            </Button>
+          </Tooltip>
         </div>
         <div>
           { this.props.forms.length

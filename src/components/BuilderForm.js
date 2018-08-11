@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import Tooltip from '@material-ui/core/Tooltip';
+
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -234,12 +236,16 @@ export class BuilderForm extends PureComponent {
             </TextField>
           </div>
           <div>
+          <Tooltip title="Add SubInput">
             <IconButton className={classes.button} aria-label="AddSubInput" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>
               <AddCircleIcon />
             </IconButton>
-            <IconButton className={classes.button} aria-label="Delete" onClick={() => this.props.removeForm(this.props.id)}>
-              <DeleteIcon />
-            </IconButton>
+          </Tooltip>
+            <Tooltip title="Delete">
+              <IconButton className={classes.button} aria-label="Delete" onClick={() => this.props.removeForm(this.props.id)}>
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         </form>
       { this.props.forms.map((form, index) =>  
