@@ -10,6 +10,7 @@ import BuilderForm from "../containers/BuilderForm";
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
+    position: 'relative',
     float: 'right',
     background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
     boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .30)',

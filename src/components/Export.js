@@ -1,4 +1,23 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  textarea: {
+    width:'100%',
+    boxSizing:'border-box',
+    maxWidth:'100%',
+    fontSize:'12px',
+    lineHeight:'1.5',
+    padding:'15px 15px 30px',
+    borderRadius:'3px',
+    border:'1px solid #F7E98D',
+    resize: 'none',
+    transition:'box-shadow 0.5s ease',
+    boxShadow:'0 4px 6px rgba(0,0,0,0.1)',
+    background:'linear-gradient(#F9EFAF, #F7E98D)',
+  },
+});
 
 export class Export extends PureComponent {
   state = {
@@ -6,10 +25,12 @@ export class Export extends PureComponent {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <div>
-          <textarea rows="5" readOnly value={JSON.stringify(this.state.export)}>
+          <textarea className={classes.textarea} rows="10" readOnly value={JSON.stringify(this.state.export)}>
           </textarea>
         </div> 
       </div>
@@ -17,4 +38,8 @@ export class Export extends PureComponent {
   }
 }
 
-export default Export;
+Export.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Export);

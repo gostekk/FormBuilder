@@ -15,24 +15,33 @@ import BuilderFormContainer from '../containers/BuilderForm';
 const styles = theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexFlow: 'row wrap',
+    width: '500px',
+    border: '1px solid black',
+  },
+  columnWrapper: {
+    display: 'flex',
+    flexFlow: 'column wrap'
+  },
+  childs: {
+    marginLeft: '0.5em'
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 230,
+  },
+  button: {
+    float: 'right',
+    margin: theme.spacing.unit,
   },
   menu: {
     width: 300,
-  },
-  button: {
-    margin: theme.spacing.unit,
   },
   input: {
     display: 'none',
   },
 });
-
 
 export class BuilderForm extends PureComponent {
   constructor(props) {
@@ -128,8 +137,8 @@ export class BuilderForm extends PureComponent {
       <div>
         <form className={classes.container} noValidate autoComplete="off">
           { this.props.parentId
-            ? (<div>
-              <div>
+            ? (
+              <div className={classes.conditionType}>
                 <TextField
                   id="conditionType"
                   select
@@ -151,111 +160,119 @@ export class BuilderForm extends PureComponent {
                   )) }
                 </TextField>
               
-              </div>
-              <div>
-                { this.props.parentType === "text"
-                ?  <TextField
-                    id="conditionValueText"
-                    label="Condition Value"
-                    className={classes.textField}
-                    value={this.state.conditionValue}
-                    onChange={this.onConditionValueChange}
-                    margin="normal"
-                  />
-                : undefined }
-                { this.props.parentType === "number"
-                ? <TextField
-                    id="conditionValueNumber"
-                    label="Condition Value"
-                    className={classes.textField}
-                    type="number"
-                    value={this.state.conditionValue}
-                    onChange={this.onConditionValueChange}
-                    InputLabelProps={{ shrink: true, }}
-                    margin="normal"
-                  />
-                : undefined }
-                { this.props.parentType === "radio"
-                ? <TextField
-                    id="conditionValueRadio"
-                    select
-                    label="Condition Value"
-                    className={classes.textField}
-                    value={this.state.conditionValue}
-                    onChange={this.onConditionValueChange}
-                    SelectProps={{
-                      MenuProps: {
-                        className: classes.menu,
-                      },
-                    }}
-                    margin="normal"
-                  >
-                    {this.conditionValue.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                : undefined }
-              </div>
-            </div>)
+              </div>)
+            : undefined
+          }
+          { this.props.parentId
+            ? (
+            <div className={classes.conditionValue}>
+              { this.props.parentType === "text"
+              ?  <TextField
+                  id="conditionValueText"
+                  label="Condition Value"
+                  className={classes.textField}
+                  value={this.state.conditionValue}
+                  onChange={this.onConditionValueChange}
+                  margin="normal"
+                />
+              : undefined }
+              { this.props.parentType === "number"
+              ? <TextField
+                  id="conditionValueNumber"
+                  label="Condition Value"
+                  className={classes.textField}
+                  type="number"
+                  value={this.state.conditionValue}
+                  onChange={this.onConditionValueChange}
+                  InputLabelProps={{ shrink: true, }}
+                  margin="normal"
+                />
+              : undefined }
+              { this.props.parentType === "radio"
+              ? <TextField
+                  id="conditionValueRadio"
+                  select
+                  label="Condition Value"
+                  className={classes.textField}
+                  value={this.state.conditionValue}
+                  onChange={this.onConditionValueChange}
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  margin="normal"
+                >
+                  {this.conditionValue.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              : undefined }
+            </div>
+            )
           : undefined
           }
-          <div>
-            <div>
+          <div className={classes.question}>
+            <TextField
+              id="question"
+              label="Question"
+              multiline
+              rowsMax="4"
+              className={classes.textField}
+              value={this.state.question}
+              onChange={this.onQuestionChange}
+              margin="normal"
+            />
+          </div>
+          <div className={classes.columnWrapper}>
+            <div className={classes.type}>
               <TextField
-                id="question"
-                label="Question"
+                id="type"
+                select
+                label="Type"
                 className={classes.textField}
-                value={this.state.question}
-                onChange={this.onQuestionChange}
+                value={this.state.type}
+                onChange={this.onTypeChange}
+                SelectProps={{
+                  MenuProps: {
+                    className: classes.menu,
+                  },
+                }}
                 margin="normal"
-              />
+              >
+                {this.typeOptions.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
+            <div className={classes.buttons}>
+              <Tooltip title="Delete">
+                <IconButton className={classes.button} aria-label="Delete" onClick={() => this.props.removeForm(this.props.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Add SubInput">
+                <IconButton className={classes.button} aria-label="AddSubInput" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>
+                  <AddCircleIcon />
+                </IconButton>
+              </Tooltip>
             </div>
           </div>
-          <div>
-            <TextField
-              id="type"
-              select
-              label="Type"
-              className={classes.textField}
-              value={this.state.type}
-              onChange={this.onTypeChange}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              margin="normal"
-            >
-              {this.typeOptions.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </div>
-          <div>
-          <Tooltip title="Add SubInput">
-            <IconButton className={classes.button} aria-label="AddSubInput" onClick={() => this.props.addSubInput(this.props.id, this.props.type)}>
-              <AddCircleIcon />
-            </IconButton>
-          </Tooltip>
-            <Tooltip title="Delete">
-              <IconButton className={classes.button} aria-label="Delete" onClick={() => this.props.removeForm(this.props.id)}>
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-          </div>
         </form>
-      { this.props.forms.map((form, index) =>  
-          form.parentId === this.props.id 
-          ? (<div key={form.id}>
-              <BuilderFormContainer {...form} parentType={this.props.type} />
-            </div>)
-          : undefined
-        )
-      }
+        <div className={classes.childs}>
+          { this.props.forms.map((form, index) =>  
+              form.parentId === this.props.id 
+              ? (<div key={form.id}>
+                  <BuilderFormContainer {...form} parentType={this.props.type} />
+                </div>)
+              : undefined
+            )
+          }
+        </div>
       </div>
     );
   }

@@ -10,16 +10,16 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import CreateIcon from '@material-ui/icons/Create';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
 import CodeIcon from '@material-ui/icons/Code';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import CreateIcon from '@material-ui/icons/Create';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
@@ -156,7 +156,7 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+              Form Builder
             </Typography>
           </Toolbar>
         </AppBar>
