@@ -7,16 +7,14 @@ export class Preview extends PureComponent {
   render() {
     return (
       <div>
-        <div>
-          { this.props.forms.length
-            ? this.props.forms.map((form) => 
-              form.parentId === undefined 
-              ? <PreviewChild key={form.id} {...form} />
-              : undefined
-            )
-            : <div>No inputs added yet!</div>
-          }
-        </div>
+        { this.props.forms.length
+          ? this.props.forms.map((form) => 
+            form.parentId === undefined 
+            ? <PreviewChild key={form.id} {...form} />
+            : undefined
+          )
+          : <div>No inputs added yet!</div>
+        }
       </div>
     );
   }

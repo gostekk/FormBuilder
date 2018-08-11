@@ -29,10 +29,8 @@ export class Export extends PureComponent {
 
     return (
       <div>
-        <div>
-          <textarea className={classes.textarea} rows="10" readOnly value={JSON.stringify(this.state.export)}>
-          </textarea>
-        </div> 
+        <textarea className={classes.textarea} rows="10" readOnly value={JSON.stringify(this.state.export)}>
+        </textarea>
       </div>
     )
   }
