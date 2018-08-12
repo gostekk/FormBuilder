@@ -1,8 +1,8 @@
 import idb from 'idb';
+import { detect } from 'detect-browser';
 
-const dbPromise = idb.open('FormsBuilderDB', 1, upgradeDB => {
-  upgradeDB.createObjectStore('forms');
-});
+const browser = detect();
+const dbPromise = idb.open('FormsBuilderDB', 1, upgradeDB => upgradeDB.createObjectStore('forms'));
 
 export const myDB = {
   getAll() {
@@ -14,14 +14,26 @@ export const myDB = {
   addForm(form) {
     return dbPromise.then(db => {
       const tx = db.transaction('forms', 'readwrite');
-      tx.objectStore('forms').add({...form});
+      if (browser.name === 'chrome') {
+        tx.objectStore('forms').put({...form});
+      } else if (browser.name === 'firefox') {
+        tx.objectStore('forms').put({...form}, form.id);
+      } else {
+        tx.objectStore('forms').put({...form}, form.id);        
+      }
       return tx.complete;
-    });
+    }).catch(err => console.log(err));
   },
   addSubInput(form) {
     return dbPromise.then(db => {
       const tx = db.transaction('forms', 'readwrite');
-      tx.objectStore('forms').add({...form});
+      if (browser.name === 'chrome') {
+        tx.objectStore('forms').put({...form});
+      } else if (browser.name === 'firefox') {
+        tx.objectStore('forms').put({...form}, form.id);
+      } else {
+        tx.objectStore('forms').put({...form}, form.id);        
+      }
       return tx.complete;
     });
   },

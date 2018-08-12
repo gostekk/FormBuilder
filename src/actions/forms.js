@@ -8,7 +8,8 @@ export const fetchForms = () => {
     myDB.getAll()
     .then(val => {
       dispatch(fetchFormsSuccess(val));
-    });
+    })
+    .catch(err => console.log(err));
   };
 };
 
@@ -29,7 +30,8 @@ export const addNewForm = () => {
   return dispatch => {
     dispatch(addNewFormRequest());
     myDB.addForm({ id: id, parentId: undefined, question: "", type: 'text'})
-      .then(() => dispatch(addNewFormSuccess(id)));
+      .then(() => dispatch(addNewFormSuccess(id)))
+      .catch(err => console.log(err));
   };
 };
 
