@@ -117,19 +117,7 @@ export class BuilderForm extends PureComponent {
     });
     this.props.editForm(this.props.id, { question: e.target.value });
   }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.question !== this.props.question || nextProps.conditionValue !== this.props.conditionValue) {
-      this.setState({
-        question: nextProps.question,
-        conditionType: nextProps.conditionType,
-        conditionValue: nextProps.conditionValue,
-        type: nextProps.type,
-        parentType: nextProps.parentType
-      });
-    }
-  }
-
+  
   render() {
     const { classes } = this.props;
 
