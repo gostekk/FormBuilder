@@ -159,7 +159,6 @@ export class BuilderForm extends PureComponent {
                     </MenuItem>
                   )) }
                 </TextField>
-              
               </div>)
             : undefined
           }
