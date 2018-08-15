@@ -25,6 +25,12 @@ export class Export extends PureComponent {
     export: this.props.forms
   };
 
+  componentDidUpdate(params) {
+    if (params.forms !== this.props.forms) {
+      this.setState({export: this.props.forms});
+    }
+  }
+
   render() {
     const { classes } = this.props;
 

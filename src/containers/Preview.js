@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import Preview from '../components/Preview';
 
-export const mapStateToProps = (state,ownProps) => {
+export const mapStateToProps = (state) => {
   return {
-    ...ownProps,
     forms: state.forms.forms
   }
 }

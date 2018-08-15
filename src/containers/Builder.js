@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import * as formsActions from '../actions/forms';
 import Builder from '../components/Builder';
 
-export const mapStateToProps = (state,ownProps) => {
+export const mapStateToProps = (state) => {
   return {
     forms: state.forms.forms
   }
@@ -11,7 +11,6 @@ export const mapStateToProps = (state,ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     addNewForm: () => dispatch(formsActions.addNewForm()),
-    fetchForms: () => dispatch(formsActions.fetchForms()),
   }
 }
 

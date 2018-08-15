@@ -22,10 +22,6 @@ const styles = theme => ({
 });
 
 export class Builder extends PureComponent {
-  componentWillMount() {
-    this.props.fetchForms();
-  }
-  
   render() {
     const { classes } = this.props;
     return (

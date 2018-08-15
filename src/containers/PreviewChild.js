@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PreviewChild from '../components/PreviewChild';
 
-export const mapStateToProps = (state,ownProps) => {
+export const mapStateToProps = (state) => {
   return {
     forms: state.forms.forms
   }

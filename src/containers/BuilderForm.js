@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import * as formsActions from '../actions/forms';
 import BuilderForm from '../components/BuilderForm';
 
-export const mapStateToProps = (state,ownProps) => {
+export const mapStateToProps = (state) => {
   return {
     forms: state.forms.forms,
-    ...ownProps
   }
 }
 

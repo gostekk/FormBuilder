@@ -1,25 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import CodeIcon from '@material-ui/icons/Code';
-import CreateIcon from '@material-ui/icons/Create';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
 import MenuIcon from '@material-ui/icons/Menu';
+
+import DrawerMenu from '../containers/DrawerMenu';
 
 const drawerWidth = 240;
 
@@ -103,42 +95,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, history, children } = this.props;
-
-    const drawer = (
-      <div>
-        <Divider />
-        <List>
-          <ListItem button onClick={() => history.push('/')}>
-            <ListItemIcon>
-              <CreateIcon />
-            </ListItemIcon>
-            <ListItemText primary="Builder" />
-          </ListItem>
-          <ListItem button onClick={() => history.push('/preview')}>
-            <ListItemIcon>
-              <FindInPageIcon />
-            </ListItemIcon>
-            <ListItemText primary="Preview" />
-          </ListItem>
-          <ListItem button onClick={() => history.push('/export')}>
-            <ListItemIcon>
-              <CodeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Export" />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <DeleteSweepIcon />
-            </ListItemIcon>
-            <ListItemText primary="Remove all" />
-          </ListItem>
-        </List>
-      </div>
-    );
+    const { classes, theme, children } = this.props;
 
     return (
       <div className={classes.root}>
@@ -172,7 +129,7 @@ class ResponsiveDrawer extends React.Component {
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
-          {drawer}
+          <DrawerMenu />
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -188,4 +145,4 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(ResponsiveDrawer));
+export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
