@@ -16,11 +16,20 @@ test("should setup fetchFormsRequest action", () => {
 
 // ADD_NEW_FORM_REQUEST
 test("should setup addNewFormRequest", () => {
-  const action = formsActions.addNewFormRequest(forms[0]._id);
+  const action = formsActions.addNewFormRequest(forms[0].id);
 
   expect(action).toEqual({
     type: "ADD_NEW_FORM_REQUEST",
-    id: forms[0]._id
+  });
+});
+
+// ADD_NEW_FORM_SUCCESS
+test("should setup addNewFormSuccess", () => {
+  const action = formsActions.addNewFormSuccess(forms[0].id);
+
+  expect(action).toEqual({
+    type: "ADD_NEW_FORM_SUCCESS",
+    id: forms[0].id
   });
 });
 
@@ -28,12 +37,21 @@ test("should setup addNewFormRequest", () => {
 
 // ADD_SUB_INPUT_REQUEST
 test("should setup addSubInputRequest", () => {
-  const id1 = forms[0]._id;
-  const id2 = forms[1]._id;
-  const action = formsActions.addSubInputRequest(id1, id2);
+  const action = formsActions.addSubInputRequest();
 
   expect(action).toEqual({
     type: "ADD_SUB_INPUT_REQUEST",
+  });
+});
+
+// ADD_SUB_INPUT_SUCCESS
+test("should setup addSubInputSuccess", () => {
+  const id1 = forms[0].id;
+  const id2 = forms[1].id;
+  const action = formsActions.addSubInputSuccess(id1, id2);
+
+  expect(action).toEqual({
+    type: "ADD_SUB_INPUT_SUCCESS",
     formId: id1,
     subFormId: id2 
   });
@@ -43,7 +61,7 @@ test("should setup addSubInputRequest", () => {
 
 // EDIT_FORM_REQUEST
 test("should setup editFormRequest", () => {
-  const id = forms[0]._id;
+  const id = forms[0].id;
   const updates = { question: "test 123"};
   const action = formsActions.editFormRequest(id, updates);
 
@@ -58,11 +76,11 @@ test("should setup editFormRequest", () => {
 
 // REMOVE_FORM_REQUEST
 test("should setup removeFormRequest", () => {
-  const id = forms[0]._id;  
+  const id = forms[0].id;  
   const action = formsActions.removeFormRequest(id);
 
   expect(action).toEqual({
     type: "REMOVE_FORM_REQUEST",
-    _id: id
+    id: id
   });
 });

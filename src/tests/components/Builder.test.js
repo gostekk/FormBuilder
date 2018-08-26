@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Builder } from "../../components/Builder";
+import Builder from "../../components/Builder";
 import { forms } from "../fixtures/forms";
 
 describe('Builder Component', () => {

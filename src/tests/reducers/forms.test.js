@@ -17,7 +17,7 @@ test("should initialize fetchFormsRequest", () => {
   const state = formsReducer(fullState, action);
 
   expect(state).toEqual({ 
-    forms: [...forms],
+    forms: fullState.forms,
     error: null
   });
 });
@@ -26,13 +26,28 @@ test("should initialize fetchFormsRequest", () => {
 test("should initialize addNewFormRequest", () => {
   const action = {
     type: "ADD_NEW_FORM_REQUEST",
-    id: forms[0]._id
+    id: forms[0].id
   };
 
   const state = formsReducer(undefined, action);
 
   expect(state).toEqual({ 
-    forms: [{ _id: forms[0]._id, parentId: undefined, question: "", type: undefined }],
+    forms: [],
+    error: null
+  });
+});
+
+// ADD_NEW_FORM_SUCCESS
+test("should initialize addNewFormSuccess", () => {
+  const action = {
+    type: "ADD_NEW_FORM_SUCCESS",
+    id: forms[0].id
+  };
+
+  const state = formsReducer(undefined, action);
+
+  expect(state).toEqual({ 
+    forms: [{ id: forms[0].id, parentId: undefined, question: "", type: "text" }],
     error: null
   });
 });
@@ -41,14 +56,28 @@ test("should initialize addNewFormRequest", () => {
 test("should initialize addSubInputRequest", () => {
   const action = {
     type: "ADD_SUB_INPUT_REQUEST",
-    subFormId: forms[0]._id,
-    formId: forms[1]._id
   };
 
   const state = formsReducer(undefined, action);
 
   expect(state).toEqual({ 
-    forms: [{ _id: forms[0]._id, parentId: forms[1]._id, question: "", type: undefined, conditionType: 'eq', conditionValue: undefined }],
+    forms: [],
+    error: null
+  });
+});
+
+// ADD_SUB_INPUT_SUCCESS
+test("should initialize addSubInputSuccess", () => {
+  const action = {
+    type: "ADD_SUB_INPUT_SUCCESS",
+    subFormId: forms[0].id,
+    formId: forms[1].id
+  };
+
+  const state = formsReducer(undefined, action);
+
+  expect(state).toEqual({ 
+    forms: [{ id: forms[0].id, parentId: forms[1].id, question: "", type: "text", conditionType: 'eq', conditionValue: undefined }],
     error: null
   });
 });
@@ -57,14 +86,29 @@ test("should initialize addSubInputRequest", () => {
 test("should initialize editFormRequest", () => {
   const action = {
     type: "EDIT_FORM_REQUEST",
-    formId: forms[0]._id,
-    updates: { ...forms[1], _id: forms[0]._id }
+    formId: forms[0].id,
+    updates: { ...forms[1], id: forms[0].id }
   };
 
   const state = formsReducer({forms: [forms[0]], error: null}, action);
 
   expect(state).toEqual({ 
-    forms: [{ ...forms[1], _id: forms[0]._id }],
+    forms: [forms[0]],
+    error: null
+  });
+});
+
+// EDIT_FORM_SUCCESS
+test("should initialize editFormSuccess", () => {
+  const action = {
+    type: "EDIT_FORM_SUCCESS",
+    newState: [{ ...forms[1], id: forms[0].id }]
+  };
+
+  const state = formsReducer({forms: [forms[0]], error: null}, action);
+
+  expect(state).toEqual({ 
+    forms: [{ ...forms[1], id: forms[0].id }],
     error: null
   });
 });
@@ -73,7 +117,21 @@ test("should initialize editFormRequest", () => {
 test("should removeFormRequest", () => {
   const action = {
     type: "REMOVE_FORM_REQUEST",
-    _id: forms[0]._id
+  };
+
+  const state = formsReducer({...fullState}, action);
+
+  expect(state).toEqual({ 
+    forms: fullState.forms,
+    error: null
+  });
+});
+
+// REMOVE_FORM_SUCCESS
+test("should removeFormSuccess", () => {
+  const action = {
+    type: "REMOVE_FORM_SUCCESS",
+    newState: [forms[6], forms[7]]
   };
 
   const state = formsReducer({...fullState}, action);
