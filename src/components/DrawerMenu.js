@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CodeIcon from '@material-ui/icons/Code';
 import CreateIcon from '@material-ui/icons/Create';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+// import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 
 export class DrawerMenu extends PureComponent {
@@ -40,7 +40,7 @@ export class DrawerMenu extends PureComponent {
             <ListItemText primary="Export" />
           </ListItem>
         </List>
-        <Divider />
+        {/* <Divider />
         <List>
           <ListItem button>
             <ListItemIcon>
@@ -48,7 +48,7 @@ export class DrawerMenu extends PureComponent {
             </ListItemIcon>
             <ListItemText primary="Remove all" />
           </ListItem>
-        </List>
+        </List> */}
       </div>
     );
   }
